@@ -2,14 +2,33 @@ name: workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
+    branches: [ "main" ]
 
 jobs:
-  build-test-analyze:
-    name: Build
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Configurar Node.js con sus dependencias y pruebas
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm install
+      - run: npm test
+
+      - name: Iniciar ESLint
+        run: npx eslint . --ext .js,.jsx --fix
+
+      - name: Setup Snyk
+        uses: snyk/actions/setup@v1
+      - name: Snyk test
+        run: snyk test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
