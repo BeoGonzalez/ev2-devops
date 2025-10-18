@@ -35,9 +35,7 @@ jobs:
 
           #configurar snyk
       - name: Setup Snyk
-        uses: snyk/actions/setup@v1
-      - name: Snyk test
-        run: snyk test
+        uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         continue-on-error: true
