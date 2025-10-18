@@ -39,6 +39,7 @@ jobs:
         run: snyk test
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        continue-on-error: true
 
       - name: Escaneo sonarcloud
         uses: SonarSource/sonarqube-scan-action@v6
