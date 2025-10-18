@@ -25,16 +25,13 @@ jobs:
           cache: "npm"
       - run: npm install --force
 
-      - name: Instalar dependencias
-        run: npm ci
-
-      - name: Pruebas de testeo
-        env:
-          CI: true
-        run: |
-
       - name: Iniciar ESLint
         run: npx eslint . --ext .js,.jsx --fix
+
+      - name: Pruebas de testeo
+        run: |
+          export CHROME_BIN=$(which google-chrome-stable)
+          npm test -- --watchAll=false --ci --browsers=ChromeHeadless
 
       - name: Setup Snyk
         uses: snyk/actions/setup@v1
