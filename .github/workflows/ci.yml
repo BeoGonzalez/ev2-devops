@@ -20,7 +20,11 @@ jobs:
           node-version: 20
           cache: "npm"
       - run: npm install --force
-      - run: npm test
+
+      - name: Pruebas de testeo
+        run: |
+          export CHROME_BIN=$(which google-chrome-stable)
+          npm test -- --watchAll=false --ci --browsers=ChromeHeadles
 
       - name: Iniciar ESLint
         run: npx eslint . --ext .js,.jsx --fix
