@@ -41,6 +41,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         continue-on-error: true
 
+        #configurar el sonarcloud
       - name: Escaneo sonarcloud
         uses: SonarSource/sonarqube-scan-action@v6
         env:
