@@ -5,13 +5,13 @@ services:
     image: beogonzalez/docker-repo
     container_name: app
     ports:
-      - "80:8080"
+      - "80:80"
     environment:
       - DB_HOST=db
       - DB_USER=root
       - DB_PASSWORD=rootpassword
       - DB_NAME=mi_base
-    depnds_on:
+    depends_on:
       - db
 
   mysql:
@@ -22,12 +22,12 @@ services:
       MYSQL_DATABASE: mi_base
       MYSQL_USER: root
       MYSQL_PASSWORD: rootpassword
-    phpmyadmin:
-      image: phpmyadmin/phpmyadmin:latest
-      restart: always
-      ports:
-        - "8081:80"
-      environment:
-        PMA_HOST: mysql
-        PMA_USER: root
-        PMA_PASSWORD: rootpassword
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
