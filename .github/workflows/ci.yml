@@ -33,6 +33,7 @@ jobs:
           export CHROME_BIN=$(which google-chrome-stable)
           npm test -- --watchAll=false --ci --browsers=ChromeHeadless
 
+          #configurar snyk
       - name: Setup Snyk
         uses: snyk/actions/setup@v1
       - name: Snyk test
