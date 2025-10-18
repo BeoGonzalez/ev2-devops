@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: ["main"]
 
+env:
+  DOCKER_USERNAME: beogonzalez
+  DOCKER_REPO: docker-repo
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,9 +26,7 @@ jobs:
       - run: npm install --force
 
       - name: Pruebas de testeo
-        run: |
-          export CHROME_BIN=$(which google-chrome-stable)
-          npm test -- --watchAll=false --ci --browsers=ChromeHeadles
+        run: npm test
 
       - name: Iniciar ESLint
         run: npx eslint . --ext .js,.jsx --fix
