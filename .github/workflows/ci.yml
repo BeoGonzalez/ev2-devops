@@ -54,5 +54,5 @@ jobs:
 
       - name: Dockerhub repo push and build
         run: |
-          docker build -t $DOCKER_USERNAME/$DOCKER_REPO:latest .
+          docker build -t $DOCKER_USERNAME/$DOCKER_REPO:latest
           docker push $DOCKER_USERNAME/$DOCKER_REPO:latest
