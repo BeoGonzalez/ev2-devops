@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      #configurar node
       - name: Configurar Node.js con sus dependencias y pruebas
         uses: actions/setup-node@v4
         with:
